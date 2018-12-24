@@ -6,8 +6,17 @@ import { stripIndents } from 'common-tags';
 let renderedStory;
 const rootElement = document ? document.getElementById('root') : null;
 
-export default function renderMain({ story, selectedKind, selectedStory, showMain, showError }) {
+export default function renderMain({
+  story,
+  selectedKind,
+  selectedStory,
+  showMain,
+  showError,
+  forceRender,
+}) {
   const element = story();
+
+  console.log({ story, selectedKind, selectedStory, showMain, showError, forceRender });
 
   if (!element) {
     showError({
