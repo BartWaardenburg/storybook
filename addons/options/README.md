@@ -1,17 +1,26 @@
+#NOTE: Options Addon is deprecated as of Storybook 5.0
+
+Options are now configured using the [`options` parameter](../../docs/src/pages/configurations/options-parameter/index.md) which is built into Storybook.
+
+- Global options: `addParameters({ options: { ... }})` and no addon is needed.
+- Story options: `storiesOf(...).add('name', storyFn, { options: { ... }})`
+
+See the [migration docs](../../MIGRATION.md#options-addon-deprecated) for what's changed.
+
 # Storybook Options Addon
 
 The Options addon can be used to (re-)configure the [Storybook](https://storybook.js.org) UI at runtime.
 
-[Framework Support](https://github.com/storybooks/storybook/blob/master/ADDONS_SUPPORT.md)
+[Framework Support](https://github.com/storybookjs/storybook/blob/master/ADDONS_SUPPORT.md)
 
-![Screenshot](docs/screenshot.png)
+![Screenshot](https://raw.githubusercontent.com/storybookjs/storybook/HEAD/addons/options/docs/screenshot.png)
 
 ## Getting Started
 
 First, install the addon
 
 ```sh
-npm install -D @storybook/addon-options
+yarn add @storybook/addon-options --dev
 ```
 
 Add this line to your `addons.js` file (create this file inside your storybook config directory if needed).
@@ -20,17 +29,16 @@ Add this line to your `addons.js` file (create this file inside your storybook c
 import '@storybook/addon-options/register';
 ```
 
-###Set options globally
+### Set options globally
 
-Import and use the `withOptions` decorator in your `config.js` file.
+Import and use the `addParameters` + `options`-key in your `config.js` file.
 
 ```js
-import { addDecorator, configure } from '@storybook/react';
-import { withOptions } from '@storybook/addon-options';
+import { addParameters, configure } from '@storybook/react';
 
 // Option defaults:
-addDecorator(
-  withOptions({
+addParameters({
+  options: {
     /**
      * name to display in the top left corner
      * @type {String}
@@ -67,11 +75,6 @@ addDecorator(
      */
     addonPanelInRight: false,
     /**
-     * sorts stories
-     * @type {Boolean}
-     */
-    sortStoriesByKind: false,
-    /**
      * regex for finding the hierarchy separator
      * @example:
      *   null - turn off hierarchy
@@ -98,14 +101,19 @@ addDecorator(
      * id to select an addon panel
      * @type {String}
      */
-    selectedAddonPanel: undefined, // The order of addons in the "Addon panel" is the same as you import them in 'addons.js'. The first panel will be opened by default as you run Storybook
+    selectedPanel: undefined, // The order of addons in the "Addon panel" is the same as you import them in 'addons.js'. The first panel will be opened by default as you run Storybook
     /**
      * enable/disable shortcuts
      * @type {Boolean}
      */
     enableShortcuts: false, // true by default
-  })
-);
+    /**
+     * show/hide tool bar
+     * @type {Boolean}
+     */
+    isToolshown: false, // true by default
+  },
+});
 
 configure(() => require('./stories'), module);
 ```
@@ -129,15 +137,13 @@ storiesOf('Addons|Custom options', module)
   );
 ```
 
-_NOTE_ that you must attach `withOptions` as a decorator (at the top-level) for this to work.
+## TypeScript
 
-## Typescript
-
-To install type definitions: `npm install -D @types/storybook__addon-options`
+To install type definitions: `yarn add @types/storybook__addon-options --dev`
 
 Make sure you also have the type definitions installed for the following libs:
 
-- node
-- react
- 
-You can install them using `npm install -D @types/node @types/react`, assuming you are using Typescript >2.0.
+- Node
+- React
+
+You can install them using `yarn add @types/node @types/react --dev`, assuming you are using TypeScript >2.0.

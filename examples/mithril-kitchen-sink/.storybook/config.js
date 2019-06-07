@@ -1,11 +1,12 @@
-import { configure, addDecorator } from '@storybook/mithril';
-import { withOptions } from '@storybook/addon-options';
+import { configure, addParameters, addDecorator } from '@storybook/mithril';
+import { withA11y } from '@storybook/addon-a11y';
 
-addDecorator(
-  withOptions({
+addDecorator(withA11y);
+addParameters({
+  options: {
     hierarchyRootSeparator: /\|/,
-  })
-);
+  },
+});
 
 function loadStories() {
   const req = require.context('../src/stories', true, /\.stories\.js$/);

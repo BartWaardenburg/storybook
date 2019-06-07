@@ -82,7 +82,7 @@ const tasks = {
       log.info(prefix, 'yarn workspace');
       spawn('yarn install');
       log.info(prefix, 'prepare');
-      spawn('lerna run prepare -- --silent');
+      spawn('lerna run prepare');
       log.info(prefix, 'dll');
       spawn('lerna run createDlls --scope "@storybook/ui"');
     },
@@ -113,13 +113,12 @@ const tasks = {
     },
     check: () => getDirectories(join(__dirname, '..', 'packs')).length > 0,
   }),
-  'crna-kitchen-sink': createTask({
-    name: `React-Native-App example ${chalk.gray('(crna-kitchen-sink)')}`,
+  registry: createTask({
+    name: `Run local registry ${chalk.gray('(reg)')}`,
     defaultValue: false,
-    option: '--reactnativeapp',
-    pre: ['packs'],
+    option: '--reg',
     command: () => {
-      spawn('yarn bootstrap:crna-kitchen-sink');
+      spawn('./scripts/run-registry.js');
     },
   }),
 };

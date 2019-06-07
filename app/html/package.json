@@ -1,17 +1,18 @@
 {
   "name": "@storybook/html",
-  "version": "4.2.0-alpha.6",
+  "version": "5.1.1",
   "description": "Storybook for HTML: View HTML snippets in isolation with Hot Reloading.",
   "keywords": [
     "storybook"
   ],
-  "homepage": "https://github.com/storybooks/storybook/tree/master/app/html",
+  "homepage": "https://github.com/storybookjs/storybook/tree/master/app/html",
   "bugs": {
-    "url": "https://github.com/storybooks/storybook/issues"
+    "url": "https://github.com/storybookjs/storybook/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/storybooks/storybook.git"
+    "url": "https://github.com/storybookjs/storybook.git",
+    "directory": "app/html"
   },
   "license": "MIT",
   "main": "dist/client/index.js",
@@ -24,17 +25,18 @@
     "prepare": "node ../../scripts/prepare.js"
   },
   "dependencies": {
-    "@storybook/core": "4.2.0-alpha.6",
+    "@storybook/core": "5.1.1",
     "common-tags": "^1.8.0",
-    "core-js": "^2.5.7",
+    "core-js": "^3.0.1",
     "global": "^4.3.2",
     "html-loader": "^0.5.5",
-    "react": "^16.6.0",
-    "react-dom": "^16.7.0",
     "regenerator-runtime": "^0.12.1"
   },
   "peerDependencies": {
     "babel-loader": "^7.0.0 || ^8.0.0"
+  },
+  "engines": {
+    "node": ">=8.0.0"
   },
   "publishConfig": {
     "access": "public"

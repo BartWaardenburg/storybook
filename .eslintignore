@@ -7,9 +7,9 @@ docs/public
 storybook-static
 built-storybooks
 lib/cli/test
+scripts/storage
 *.bundle.js
 *.js.map
-*.ts
 
 !.remarkrc.js
 !.babelrc.js
@@ -17,3 +17,8 @@ lib/cli/test
 !.eslintrc-markdown.js
 !.jest.config.js
 !.storybook
+
+REACT_NATIVE
+examples-native
+react-native
+ondevice-*

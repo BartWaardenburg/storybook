@@ -1,11 +1,12 @@
-import { configure, addDecorator } from '@storybook/marko';
-import { withOptions } from '@storybook/addon-options';
+import { configure, addParameters, addDecorator } from '@storybook/marko';
+import { withA11y } from '@storybook/addon-a11y';
 
-addDecorator(
-  withOptions({
+addDecorator(withA11y);
+addParameters({
+  options: {
     hierarchyRootSeparator: /\|/,
-  })
-);
+  },
+});
 
 function loadStories() {
   // put welcome screen at the top of the list so it's the first one displayed

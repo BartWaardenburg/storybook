@@ -1,14 +1,16 @@
-import { configure, addDecorator } from '@storybook/angular';
-import { withOptions } from '@storybook/addon-options';
+/* eslint-disable global-require */
+import { configure, addParameters, addDecorator } from '@storybook/angular';
+import { withA11y } from '@storybook/addon-a11y';
 import addCssWarning from '../src/cssWarning';
 
+addDecorator(withA11y);
 addCssWarning();
 
-addDecorator(
-  withOptions({
+addParameters({
+  options: {
     hierarchyRootSeparator: /\|/,
-  })
-);
+  },
+});
 
 function loadStories() {
   // put welcome screen at the top of the list so it's the first one displayed
